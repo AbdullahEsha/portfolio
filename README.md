@@ -73,7 +73,7 @@ Yes, you can fork this repo. Please give me proper credit by linking back to [an
 1. Clone the repo CLI
 
    ```sh
-   git clone https://github.com/hktitof/my-website.git
+   git clone https://github.com/AbdullahEsha/portfolio.git
    ```
 
 2. Install and use the correct version of Node using [NVM](https://github.com/nvm-sh/nvm)
