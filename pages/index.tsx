@@ -67,7 +67,7 @@ export default function Home() {
     Aos.init({ duration: 2000, once: true })
   }, [])
 
-  console.log('Portfolio Rendered...')
+  // console.log('Portfolio Rendered...')
   const meta = {
     title: 'Abdullah Esha - Software Engineer',
     description: `I've been working on Software development for 2 years straight. Get in touch with me to know more.`,
