@@ -6,6 +6,9 @@ import Bayshore from './Descriptions/Bayshore'
 import Halalkabab from './Descriptions/Halalkabab'
 import Nazaara from './Descriptions/Nazaara'
 import Butterfly from './Descriptions/Butterfly'
+import MakeYourQRCode from './Descriptions/MakeYourQRCode'
+import TripLaw from './Descriptions/TripLaw'
+
 export default function WhereIHaveWorked() {
   const barRef = useRef<HTMLDivElement>(null)
   // ? INFORMATIONAL control the green position using px,
@@ -22,6 +25,10 @@ export default function WhereIHaveWorked() {
         return <Halalkabab />
       case 'Nazaara':
         return <Nazaara />
+      case 'MakeYourQRCode':
+        return <MakeYourQRCode />
+      case 'TripLaw':
+        return <TripLaw />
       default:
         return <Butterfly />
     }
@@ -148,6 +155,7 @@ const CompaniesBar = (props) => {
               false,
               false,
               false,
+              false,
             ]}
             setDescriptionJob={props.setDescriptionJob}
           />
@@ -164,12 +172,13 @@ const CompaniesBar = (props) => {
               false,
               false,
               false,
+              false,
             ]}
             setDescriptionJob={props.setDescriptionJob}
           />
           <CompanyButton
             ButtonOrderOfcompanyNameBackgroundColorGreen={3}
-            CompanyName="Halal Kabab & Curry"
+            CompanyName="Halal Kabab"
             BarPosition={120}
             BarAvobePosition={385}
             DescriptionJob="Halalkabab"
@@ -178,6 +187,7 @@ const CompaniesBar = (props) => {
               false,
               false,
               true,
+              false,
               false,
               false,
             ]}
@@ -196,6 +206,41 @@ const CompaniesBar = (props) => {
               false,
               true,
               false,
+              false,
+            ]}
+            setDescriptionJob={props.setDescriptionJob}
+          />
+          <CompanyButton
+            ButtonOrderOfcompanyNameBackgroundColorGreen={5}
+            CompanyName="Trip Law"
+            BarPosition={208}
+            BarAvobePosition={641}
+            DescriptionJob="TripLaw"
+            CompanyNameBackgroundColorGreen={[
+              false,
+              false,
+              false,
+              false,
+              false,
+              true,
+              false,
+            ]}
+            setDescriptionJob={props.setDescriptionJob}
+          />
+          <CompanyButton
+            ButtonOrderOfcompanyNameBackgroundColorGreen={6}
+            CompanyName="QR Code"
+            BarPosition={252}
+            BarAvobePosition={769}
+            DescriptionJob="MakeYourQRCode"
+            CompanyNameBackgroundColorGreen={[
+              false,
+              false,
+              false,
+              false,
+              false,
+              false,
+              true,
             ]}
             setDescriptionJob={props.setDescriptionJob}
           />
