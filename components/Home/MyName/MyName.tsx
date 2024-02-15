@@ -80,13 +80,20 @@ export default function MyName(props: { finishedLoading: boolean }) {
         i possess strong problem-solving skills and specialize in crafting
         exceptional <br className="2xl:block hidden" />
         digital experiences. My current area of focus is in the{' '}
-        <span className="text-AAsecondary">web3 domain</span>, where I actively
-        engage in developing <br className="2xl:block hidden" />
-        and designing immersive{' '}
-        <span className="text-AAsecondary">web3 applications</span>. This
-        involves working with{' '}
-        <span className="text-AAsecondary">Smart Contracts</span> on the{' '}
-        <span className="text-AAsecondary">Blockchain</span>.
+        <span className="text-AAsecondary">
+          Service Oriented Architecture like ERP and CRM
+        </span>
+        , where I actively engage in developing{' '}
+        <span className="text-AAsecondary">microservices</span>,{' '}
+        <span className="text-AAsecondary">APIs</span>,{' '}
+        <span className="text-AAsecondary">databases</span>,{' '}
+        <span className="text-AAsecondary">back-end</span>,{' '}
+        <span className="text-AAsecondary">front-end</span> and{' '}
+        <span className="text-AAsecondary">full-stack</span> applications. I
+        have a strong understanding of the full software development life cycle,
+        from <br className="2xl:block hidden" />
+        creating and deploying them, as well as implementing the front-end
+        components to enable seamless user interactions.
         {/* <br className="2xl:block hidden" />creating and deploying them, as well as implementing the
         front-end components to enable seamless user interactions. */}
       </motion.h3>
