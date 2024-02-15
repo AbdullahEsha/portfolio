@@ -5,18 +5,25 @@ export default function FeverTokens() {
   const tasks = [
     {
       text:
-        'Leading the development of the NFT Marketplace v2 for the Platform FeverTokens.',
-      keywords: ['NFT Marketplace v2'],
+        'Developed a new website for Bayshore Communication, a company that provides a wide range of services including web development, mobile app development, and digital marketing. The website was built using Next.js, TypeScript, and TailwindCSS. ',
+      keywords: [
+        'TypeScript',
+        'Next.js',
+        'TailwindCSS',
+        'Bayshore Communication',
+        'web development',
+        'mobile app development',
+        'digital marketing',
+      ],
     },
     {
       text:
-        'Worked with a team of six developers to build a temporary NFT Marketplace platform for VivaTech2022 event, an ambitious startup originating from France,Paris.',
-      keywords: ['VivaTech2022 event'],
+        'Worked with a team of two developers to build a new website for the Bayshore Communication company.',
+      keywords: ['team of two developers', 'Bayshore Communication', 'website'],
     },
     {
-      text:
-        'Interacted with the blockchain & Smart Contracts to build the new FeverTokens Platform.',
-      keywords: ['blockchain & Smart Contracts'],
+      text: 'Interacted with the Stripe API to implement a payment system.',
+      keywords: ['Stripe', 'API', 'payment', 'system'],
     },
   ]
   return (
@@ -25,19 +32,20 @@ export default function FeverTokens() {
         <div className="flex flex-col spacey-y-2">
           {/* Title */}
           <span className="text-gray-100 sm:text-lg text-sm font-Arimo tracking-wide">
-            Software Engineer <span className="text-AAsecondary">@ web3</span>
+            A digital marketing agency{' '}
+            <span className="text-AAsecondary">service website</span>
           </span>
           {/* Date */}
-          <span className="font-mono text-xs text-gray-500">
-            Mars - August 2022
-          </span>
+          <span className="font-mono text-xs text-gray-500">Feb 2023</span>
           <span
             className="font-mono text-xs text-AAsecondary hover:cursor-pointer"
             // set text size on style attribute
             style={{ fontSize: '0.6rem' }}
-            onClick={() => window.open('https:///www.fevertokens.io', '_blank')}
+            onClick={() =>
+              window.open('https://www.bayshorecommunication.com', '_blank')
+            }
           >
-            www.fevertokens.io
+            www.bayshorecommunication.com
           </span>
         </div>
         <div className="flex flex-col space-y-4 sm:text-sm text-xs">

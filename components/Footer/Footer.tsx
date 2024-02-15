@@ -21,7 +21,6 @@ const IconsData = [
     Icon: LinkedinIcon,
   },
   { href: 'https://www.instagram.com/shahriar_isha', Icon: InstagramIcon },
-  // { href: 'https://www.youtube.com/@abdellatif_anaflous', Icon: FaceBookIcon },
 ]
 
 export default function Fotter(props: {

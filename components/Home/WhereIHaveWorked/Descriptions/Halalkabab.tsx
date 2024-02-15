@@ -6,18 +6,26 @@ export default function IdealFresh() {
   const tasks = [
     {
       text:
-        'Designed and Built a Desktop app for IdealFresh that manage billings, client circumstances using Apache POI with Microsoft Office Excel.',
-      keywords: ['Apache POI'],
+        'A website for a restaurant that provides online food ordering. The website was built using Next.js, JavaScript, and BootStrap. The application was deployed using Vercel and the database was managed using MongoDB. The payment system was implemented using PayPal and the Google Maps API was used to show the location of the restaurant.',
+      keywords: [
+        'Next.js',
+        'BootStrap',
+        'MongoDB',
+        'PayPal',
+        'Google Maps',
+        'JavaScript',
+        'Vercel',
+      ],
     },
     {
       text:
-        'Creating customized scripts for pulling, managing and refactoring files from Clouds.',
-      keywords: ['scripts'],
+        'Creating a script to automate the process of updating the menu and the prices of the restaurant.',
+      keywords: ['scripts', 'menu', 'prices'],
     },
     {
       text:
-        'Daily communications and interactions with a non-developers to solve their problems by providing technological solutions and expertise.',
-      keywords: ['non-developers'],
+        'Interacted with the Google Maps API to show the location of the restaurant.',
+      keywords: ['Google Maps', 'API', 'location', 'restaurant'],
     },
   ]
   return (
@@ -26,12 +34,19 @@ export default function IdealFresh() {
         <div className="flex flex-col spacey-y-2">
           {/* Title */}
           <span className="text-gray-100 sm:text-lg text-sm font-Arimo tracking-wide">
-            Software Developer{' '}
-            <span className="text-AAsecondary">@ JavaFX</span>
+            An <span className="text-AAsecondary">E-commerce</span> website for
+            a <span className="text-AAsecondary">Restaurant</span>
           </span>
           {/* Date */}
-          <span className="font-mono text-xs text-gray-500">
-            June - August 2021
+          <span className="font-mono text-xs text-gray-500">Apr 2023</span>
+          <span
+            className="font-mono text-xs text-AAsecondary hover:cursor-pointer"
+            style={{ fontSize: '0.6rem' }}
+            onClick={() =>
+              window.open('https://www.halalkababncurry.com', '_blank')
+            }
+          >
+            www.halalkababncurry.com
           </span>
         </div>
         <div className="flex flex-col space-y-4 sm:text-sm text-xs">

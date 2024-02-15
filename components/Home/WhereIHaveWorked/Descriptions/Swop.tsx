@@ -6,18 +6,24 @@ export default function TrouveTavoie() {
   const tasks = [
     {
       text:
-        'Spearhead & implemented a new design user workflow system for the Frond-End Architecture of a NFT Marketplace.',
-      keywords: ['NFT Marketplace'],
+        'Swop is a NFC Marketplace that allows users to buy and sell digital assets. The Front-End was built using JavaScript, TypeScript, Next.js/React, Redux, and Express.js. The Back-End was built using Node.js, Express.js, and Stripe. The application was deployed using Vercel and Docker on DigitalOcean. ',
+      keywords: [
+        'NFC Marketplace',
+        'Frond-End',
+        'JavaScript',
+        'Node.js',
+        'Redux',
+        'Express.js',
+        'Stripe',
+        'Vercel',
+        'Docker',
+        'DigitalOcean',
+      ],
     },
     {
       text:
-        'Worked with a variety of different languages, platforms, frameworks, and content management systems such as JavaScript, TypeScript, Next.js/React, AWS and Vercel.',
-      keywords: ['Next.js/React', 'AWS', 'Vercel'],
-    },
-    {
-      text:
-        'Interfaced with developers on a daily basis, providing technological expertise.',
-      keywords: [],
+        'Designed the UI/UX of the application using Figma and the NFC token are the main product of the application.',
+      keywords: ['UI/UX', 'NFC', 'Marketplace', 'Product', 'Figma'],
     },
   ]
 
@@ -27,22 +33,19 @@ export default function TrouveTavoie() {
         <div className="flex flex-col spacey-y-2">
           {/* Title */}
           <span className="text-gray-100 sm:text-lg text-sm font-Arimo tracking-wide">
-            Software Engineer{' '}
-            <span className="text-AAsecondary">@ Blockchain</span>
+            A NFC <span className="text-AAsecondary">Marketplace</span>
           </span>
           {/* Date */}
           <span className="font-mono text-xs text-gray-500">
-            Mars - August 2022
+            Mar 2023 - Jun 2023
           </span>
           <span
             className="font-mono text-xs text-AAsecondary hover:cursor-pointer"
             style={{ fontSize: '0.6rem' }}
             // set on click to open the website
-            onClick={() =>
-              window.open('https://www.trouvetavoie.io/', '_blank')
-            }
+            onClick={() => window.open('https://swopme.co', '_blank')}
           >
-            www.trouvetavoie.io
+            swopme.co
           </span>
         </div>
         <div className="flex flex-col space-y-4 sm:text-sm text-xs">
