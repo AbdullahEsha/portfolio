@@ -39,8 +39,8 @@ export default function SuperBerry() {
         <div className="flex flex-col spacey-y-2">
           {/* Title */}
           <span className="text-gray-100 sm:text-lg text-sm font-Arimo tracking-wide">
-            A e-commerce platform for{' '}
-            <span className="text-AAsecondary">Women Wear</span>
+            An <span className="text-AAsecondary">e-commerce</span> platform for{' '}
+            <span className="text-AAsecondary">women wear</span>
           </span>
           {/* Date */}
           <span className="font-mono text-xs text-gray-500">

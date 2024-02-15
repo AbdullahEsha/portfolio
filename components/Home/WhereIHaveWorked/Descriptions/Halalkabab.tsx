@@ -34,8 +34,8 @@ export default function IdealFresh() {
         <div className="flex flex-col spacey-y-2">
           {/* Title */}
           <span className="text-gray-100 sm:text-lg text-sm font-Arimo tracking-wide">
-            An <span className="text-AAsecondary">E-commerce</span> website for
-            a <span className="text-AAsecondary">Restaurant</span>
+            An <span className="text-AAsecondary">e-commerce</span> website for
+            a <span className="text-AAsecondary">restaurant</span>
           </span>
           {/* Date */}
           <span className="font-mono text-xs text-gray-500">Apr 2023</span>
