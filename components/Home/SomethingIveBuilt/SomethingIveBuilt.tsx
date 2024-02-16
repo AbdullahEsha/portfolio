@@ -55,7 +55,7 @@ export default function SomethingIveBuilt() {
               </Link> */}
 
               <a
-                href="https://www.ens.vision"
+                href="https://butterflymatrimonial.com"
                 target={'_blank'}
                 rel="noreferrer"
               >
@@ -67,7 +67,7 @@ export default function SomethingIveBuilt() {
               </a>
 
               <Img
-                src={'/ensvision.jpg'}
+                src={'/butterfly.jpg'}
                 alt={'Project Screen shot'}
                 className={`w-full rounded h-full `}
               />
@@ -82,7 +82,7 @@ export default function SomethingIveBuilt() {
                 <div className="absolute w-full h-full bg-AAsecondary opacity-10 z-10"></div>
                 <div className="absolute w-full h-full bg-AAprimary opacity-80 z-10"></div>
                 <Img
-                  src={'/ensvision.jpg'}
+                  src={'/butterfly.jpg'}
                   alt={'Project Screen shot'}
                   className={`w-full h-full `}
                 />
@@ -94,14 +94,16 @@ export default function SomethingIveBuilt() {
             col-span-8 flex flex-col items-start md:items-end space-y-3"
             >
               <div className="flex flex-col space-y-1 md:items-end z-10">
-                <span className="text-AAsecondary text-base">ENS Vision </span>
+                <span className="text-AAsecondary text-base">
+                  Recent Project
+                </span>
                 <a
-                  href="https://ens.vision"
+                  href="https://butterflymatrimonial.com"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <span className=" md:text-gray-200 text-AAsecondary font-bold text-xl hover:cursor-pointer">
-                    ENS names Marketplace
+                    Butterfly Matrimonial
                   </span>
                 </a>
               </div>
@@ -130,12 +132,16 @@ export default function SomethingIveBuilt() {
                 <span className="pr-4 z-10">ERC72</span>
               </ul>
               <div className="z-10 flex fle-row space-x-5 ">
+                <GithubIcon link="https://github.com" />
                 <a
-                  href="https://www.ens.vision/"
+                  href="https://butterflymatrimonial.com"
                   target={'_blank'}
                   rel="noreferrer"
                 >
-                  <ExternalLink url={''} router={router} />
+                  <ExternalLink
+                    url={'https://butterflymatrimonial.com'}
+                    router={router}
+                  />
                 </a>
               </div>
             </div>
@@ -153,11 +159,7 @@ export default function SomethingIveBuilt() {
           absolute md:grid grid-cols-12 w-full h-full  content-center "
           >
             <div className="relative rounded w-full h-full col-start-6 col-span-7 ">
-              <a
-                href={'https://ubiquitous-bublanina-da84ec.netlify.app/'}
-                target="_blank"
-                rel="noreferrer"
-              >
+              <a href={'https://swopme.co'} target="_blank" rel="noreferrer">
                 <div
                   className="absolute w-full h-full rounded bg-AAprimary 
            transition-opacity opacity-50 hover:opacity-0 hover:cursor-pointer duration-300"
@@ -166,20 +168,20 @@ export default function SomethingIveBuilt() {
               <Img
                 src={'/swop.jpg'}
                 alt={'Project Screen shot'}
-                className={`w-full rounded h-full `}
+                className={`w-full rounded h-full`}
               />
             </div>
           </div>
 
           {/* right Content */}
-          <div className=" md:absolute py-4  md:grid md:grid-cols-12 w-full h-full  content-center ">
+          <div className="md:absolute py-4  md:grid md:grid-cols-12 w-full h-full  content-center">
             {/* background for text in mobile responsive */}
             <div className="absolute w-full h-full bg-opacity-70 z-0 md:order-2">
               <div className="relative w-full h-full">
                 <div className="absolute w-full h-full bg-AAsecondary opacity-10 z-10"></div>
                 <div className="absolute w-full h-full bg-AAprimary opacity-80 z-10"></div>
                 <Img
-                  src={'/halal-kabab.jpg'}
+                  src={'/swop.jpg'}
                   alt={'Project Screen shot'}
                   className={`w-full h-full`}
                 />
@@ -195,12 +197,12 @@ export default function SomethingIveBuilt() {
                   Recent Project
                 </span>
                 <a
-                  href="https://ypredict.ai/"
+                  href="https://swopme.co"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <span className=" md:text-gray-200 text-AAsecondary font-bold text-xl hover:cursor-pointer">
-                    YPredict - v1
+                    Swop
                   </span>
                 </a>
               </div>
@@ -233,12 +235,8 @@ export default function SomethingIveBuilt() {
                 <span className="pr-4 z-10">Blockchain</span>
               </ul>
               <div className="z-10 flex fle-row space-x-5 ">
-                <GithubIcon link="https://github.com/hktitof/Ypredict" />
-                <a
-                  href="https://ubiquitous-bublanina-da84ec.netlify.app/"
-                  target={'_blank'}
-                  rel="noreferrer"
-                >
+                <GithubIcon link="https://github.com" />
+                <a href="https://swopme.co" target={'_blank'} rel="noreferrer">
                   <ExternalLink url={''} router={router} />
                 </a>
               </div>
@@ -256,7 +254,7 @@ export default function SomethingIveBuilt() {
           absolute md:grid grid-cols-12 w-full h-full  content-center"
           >
             <div className="relative rounded w-full h-full col-span-7 ">
-              <Link href={'/typing'}>
+              <Link href={'https://www.bayshorecommunication.com'}>
                 <div
                   // onClick={}
                   className="absolute w-full h-full rounded bg-AAsecondary 
@@ -295,9 +293,9 @@ export default function SomethingIveBuilt() {
                 <span className="text-AAsecondary text-base">
                   Recent Project
                 </span>
-                <Link href={'/typing'}>
+                <Link href={'https://www.bayshorecommunication.com'}>
                   <span className=" md:text-gray-200 text-AAsecondary font-bold text-xl hover:cursor-pointer">
-                    Speed Typing
+                    Bayshore Communication
                   </span>
                 </Link>
               </div>
@@ -322,8 +320,11 @@ export default function SomethingIveBuilt() {
                 <span className="pr-4 z-10">TypeScript</span>
               </ul>
               <div className="z-10 flex fle-row space-x-5 ">
-                <GithubIcon link="https://github.com/hktitof/Typing" />
-                <ExternalLink url={'typing'} router={router} />
+                <GithubIcon link="https://github.com" />
+                <ExternalLink
+                  url={'https://www.bayshorecommunication.com'}
+                  router={router}
+                />
               </div>
             </div>
           </div>
@@ -337,7 +338,7 @@ export default function SomethingIveBuilt() {
           {/* Left image */}
           <div className="hidden bg-AAprimary z-10 py-4 absolute md:grid grid-cols-12 w-full h-full content-center">
             <div className="relative rounded w-full h-full col-start-6 col-span-7 ">
-              <Link href={'/userdatapuller'}>
+              <Link href={'https://www.halalkababncurry.com'}>
                 <div className="absolute w-full h-full rounded bg-AAsecondary transition-opacity opacity-10 hover:opacity-0 hover:cursor-pointer duration-300" />
               </Link>
               <Img
@@ -368,35 +369,42 @@ export default function SomethingIveBuilt() {
                 <span className="text-AAsecondary text-base">
                   Recent Project
                 </span>
-                <Link href={'/userdatapuller'}>
+                <Link href={'https://www.halalkababncurry.com'}>
                   <span className=" md:text-gray-200 text-AAsecondary font-bold text-xl hover:cursor-pointer">
-                    User Data puller
+                    Halal Kabab & Curry
                   </span>
                 </Link>
               </div>
               <div className="w-full md:bg-AAtertiary rounded-md py-6 md:p-6  z-10">
                 <p className="text-gray-300 md:text-gray-400 text-left ">
-                  This project allows you to understand how easy it is to
-                  identify and track your browser based on how it appears to
-                  websites. Such as your
-                  <span className="text-AAsecondary"> location</span>,{' '}
-                  <span className="text-AAsecondary">IP Address</span>,{' '}
-                  <span className="text-AAsecondary">
-                    {','} software, Hardware
-                  </span>{' '}
-                  and some additional information with the help of cookies.
+                  {/* write about halal kabab and curry a project for restrurant online using javaScript bootstrap */}
+                  This project is a{' '}
+                  <span className="text-AAsecondary">restaurant website</span>{' '}
+                  that provides a <span className="text-AAsecondary">menu</span>{' '}
+                  for the customers to order online. It also provides{' '}
+                  <span className="text-AAsecondary">location</span> and{' '}
+                  <span className="text-AAsecondary">contact</span> information
+                  for the customers. It also provides{' '}
+                  <span className="text-AAsecondary">online payment</span> using
+                  PayPal. The project is built using{' '}
+                  <span className="text-AAsecondary">Next.js</span> and{' '}
+                  <span className="text-AAsecondary">Bootstrap</span>.
                 </p>
               </div>
               <ul className="flex flex-wrap w-full text-gray-300 md:text-gray-400 text-sm font-Text2 md:justify-start">
-                <span className="pr-4 z-10">Cookies</span>
+                <span className="pr-4 z-10">Next.js</span>
                 <span className="pr-4 z-10">Google APi</span>
-                <span className="pr-4 z-10">Data collecting</span>
-                <span className="pr-4 z-10">IP Address</span>
-                <span className="pr-4 z-10">Location</span>
+                <span className="pr-4 z-10">PayPal</span>
+                <span className="pr-4 z-10">Bootstrap</span>
+                <span className="pr-4 z-10">MongoDB</span>
+                <span className="pr-4 z-10">JWT</span>
               </ul>
               <div className="z-10 flex fle-row space-x-5 ">
-                <GithubIcon link="https://github.com/hktitof/DataPuller" />
-                <ExternalLink url={'/userdatapuller'} router={router} />
+                <GithubIcon link="https://github.com" />
+                <ExternalLink
+                  url={'https://www.halalkababncurry.com'}
+                  router={router}
+                />
               </div>
             </div>
           </div>
@@ -414,7 +422,7 @@ export default function SomethingIveBuilt() {
           >
             <div className="relative rounded w-full h-full col-span-7 ">
               <a
-                href="https://www.haircut.ma"
+                href="https://www.nazaaralifestyle.com"
                 target={'_blank'}
                 rel="noreferrer"
               >
@@ -468,46 +476,51 @@ export default function SomethingIveBuilt() {
                   Recent Project
                 </span>
                 <a
-                  href="https://www.haircut.ma"
+                  href="https://www.nazaaralifestyle.com"
                   target={'_blank'}
                   rel="noreferrer"
                 >
                   <span className=" md:text-gray-200 text-AAsecondary font-bold text-xl hover:cursor-pointer">
-                    Haircut Appointment
+                    Nazaara Lifestyle
                   </span>
                 </a>
               </div>
               <div className="w-full md:bg-AAtertiary rounded-md py-6 md:p-6  z-10">
                 <p className="text-gray-300 md:text-gray-400 text-left md:text-right">
-                  It&apos; a barber shop{' '}
-                  <span className="text-AAsecondary">
-                    appointment scheduling
-                  </span>{' '}
-                  & management software it provides{' '}
-                  <span className="text-AAsecondary">online scheduling</span>,
-                  appointment reminders,{' '}
-                  <span className="text-AAsecondary">payments</span>, marketing,
-                  and much more! Currently in the{' '}
-                  <span className="text-AAsecondary">Initiation phase</span>.
+                  This project is a{' '}
+                  <span className="text-AAsecondary">e-commerce</span> platform
+                  using <span className="text-AAsecondary">Next.js</span> and{' '}
+                  <span className="text-AAsecondary">Express.js</span> for the
+                  backend. Some of the features include{' '}
+                  <span className="text-AAsecondary">user authentication</span>,
+                  a <span className="text-AAsecondary">shopping cart</span>, and{' '}
+                  <span className="text-AAsecondary">payment gateway</span>. The
+                  project is still in the development phase and will be launched
+                  soon.
                 </p>
               </div>
               <ul
                 className="flex flex-wrap w-full text-gray-300 md:text-gray-400
                text-sm font-Text2 md:justify-end"
               >
-                <span className="pr-4 z-10">Appointment</span>
-                <span className="pr-4 z-10">Management</span>
-                <span className="pr-4 z-10">Scheduling</span>
-                <span className="pr-4 z-10">Booking</span>
+                <span className="pr-4 z-10">Next.js</span>
+                <span className="pr-4 z-10">TypeScript</span>
+                <span className="pr-4 z-10">Express.js</span>
+                <span className="pr-4 z-10">MongoDB</span>
+                <span className="pr-4 z-10">SSL Commerz</span>
+                <span className="pr-4 z-10">AWS EC2</span>
               </ul>
               <div className="z-10 flex fle-row space-x-5 sm:pt-0 pt-2">
-                <GithubIcon link="https://github.com/hktitof/haircut" />
+                <GithubIcon link="https://github.com" />
                 <a
-                  href="https://www.haircut.ma"
+                  href="https://www.nazaaralifestyle.com"
                   target={'_blank'}
                   rel="noreferrer"
                 >
-                  <ExternalLink url={''} router={router} />
+                  <ExternalLink
+                    url={'https://www.nazaaralifestyle.com'}
+                    router={router}
+                  />
                 </a>
               </div>
             </div>
