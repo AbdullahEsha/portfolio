@@ -109,27 +109,32 @@ export default function SomethingIveBuilt() {
               </div>
               <div className="w-full md:bg-AAtertiary rounded-md py-6 md:p-6  z-10">
                 <p className="text-gray-300 md:text-gray-400 text-left md:text-right ">
-                  At <span className="text-AAsecondary">ENS Vision</span>, I
-                  played a crucial role in developing web3 components for their{' '}
-                  <span className="text-AAsecondary">web3 application</span>{' '}
-                  using Next.js and web3 libraries. Our focus was on integrating
-                  new features and improving the user interface. One notable
-                  achievement was the release of NameWrapper with{' '}
-                  <span className="text-AAsecondary">ERC72</span> support,
-                  enabling users to create{' '}
-                  <span className="text-AAsecondary">subdomains</span>. This
-                  showcased our commitment to delivering innovative solutions.
+                  Butterfly Matrimonial is a{' '}
+                  <span className="text-AAsecondary">matrimonial website</span>{' '}
+                  that provides a{' '}
+                  <span className="text-AAsecondary">platform</span> for the
+                  users to find their{' '}
+                  <span className="text-AAsecondary">life partner</span> based
+                  on their <span className="text-AAsecondary">community</span>{' '}
+                  and <span className="text-AAsecondary">profession</span>. The
+                  project is built using{' '}
+                  <span className="text-AAsecondary">React.js</span> and{' '}
+                  <span className="text-AAsecondary">Laravel 9</span> for the
+                  backend. It also provides{' '}
+                  <span className="text-AAsecondary">Online CV</span> create
+                  feature for the users.
                 </p>
               </div>
               <ul
                 className="flex flex-wrap w-full text-gray-300 md:text-gray-400
                text-sm font-Text2 md:justify-end"
               >
-                <span className="pr-4 z-10">ENS domains</span>
-                <span className="pr-4 z-10">ENS names</span>
-                <span className="pr-4 z-10">web3</span>
-                <span className="pr-4 z-10">NFT</span>
-                <span className="pr-4 z-10">ERC72</span>
+                <span className="pr-4 z-10">React.js</span>
+                <span className="pr-4 z-10">Laravel 9</span>
+                <span className="pr-4 z-10">PHP</span>
+                <span className="pr-4 z-10">JavaScript</span>
+                <span className="pr-4 z-10">MySQL</span>
+                <span className="pr-4 z-10">Online CV</span>
               </ul>
               <div className="z-10 flex fle-row space-x-5 ">
                 <GithubIcon link="https://github.com" />
@@ -208,31 +213,31 @@ export default function SomethingIveBuilt() {
               </div>
               <div className="w-full md:bg-AAtertiary rounded-md py-6 md:p-6  z-10">
                 <p className="text-gray-300 md:text-gray-400 text-left ">
-                  I had the opportunity to lead the development of a token
-                  project, which aimed to create a decentralized ecosystem for
-                  peer-to-peer transactions. Overseeing the planning and
-                  development of the project, including the{' '}
-                  <span className="text-AAsecondary"> design</span> and
-                  implementation of the{' '}
-                  <span className="text-AAsecondary"> smart contract</span> and{' '}
-                  <span className="text-AAsecondary">
-                    {' '}
-                    blockchain technology
-                  </span>
-                  . Here i share with you{' '}
-                  <span className="text-AAsecondary"> YPredict - v1 </span> for
-                  the private sale.
+                  Swop is a <span className="text-AAsecondary">NFC token</span>{' '}
+                  that provides a{' '}
+                  <span className="text-AAsecondary">digital wallet</span> for
+                  users to store their{' '}
+                  <span className="text-AAsecondary">NFTs</span> and{' '}
+                  <span className="text-AAsecondary">cryptocurrency</span>. The
+                  project is built using{' '}
+                  <span className="text-AAsecondary">Next.js</span> and{' '}
+                  <span className="text-AAsecondary">Express.js</span> for the
+                  backend. It also provides{' '}
+                  <span className="text-AAsecondary">online payment</span> using
+                  Stripe. The project is hosted on{' '}
+                  <span className="text-AAsecondary">DigitalOcean</span>.
                 </p>
               </div>
               <ul
                 className="flex flex-wrap w-full text-gray-300 md:text-gray-400
                text-sm font-Text2 md:justify-start"
               >
-                <span className="pr-4 z-10">Token</span>
-                <span className="pr-4 z-10">ERC20</span>
+                <span className="pr-4 z-10">NFC Token</span>
                 <span className="pr-4 z-10">Nextjs</span>
-                <span className="pr-4 z-10">Smart contract</span>
-                <span className="pr-4 z-10">Blockchain</span>
+                <span className="pr-4 z-10">Express.js</span>
+                <span className="pr-4 z-10">JavaScript</span>
+                <span className="pr-4 z-10">Redux</span>
+                <span className="pr-4 z-10">DigitalOcean</span>
               </ul>
               <div className="z-10 flex fle-row space-x-5 ">
                 <GithubIcon link="https://github.com" />
@@ -301,23 +306,28 @@ export default function SomethingIveBuilt() {
               </div>
               <div className="w-full md:bg-AAtertiary rounded-md py-6 md:p-6  z-10">
                 <p className="text-gray-300 md:text-gray-400 text-left md:text-right">
-                  This project aim to help you to improve your{' '}
-                  <span className="text-AAsecondary"> typing </span> by tracking
-                  your progress in{' '}
-                  <span className="text-AAsecondary"> each round</span> and give
-                  you a <span className="text-AAsecondary"> score</span> based
-                  on your typing speed and accuracy through a table of{' '}
-                  <span className="text-AAsecondary"> statistics</span>.
+                  This project aim to help the{' '}
+                  <span className="text-AAsecondary">business</span> to grow
+                  their{' '}
+                  <span className="text-AAsecondary">online presence</span> and{' '}
+                  <span className="text-AAsecondary">customer base</span>. The
+                  project is built using{' '}
+                  <span className="text-AAsecondary">Next.js</span> and{' '}
+                  <span className="text-AAsecondary">Tailwind CSS</span>. It
+                  also provides{' '}
+                  <span className="text-AAsecondary">online payment</span> using{' '}
+                  <span className="text-AAsecondary">Stripe</span>.
                 </p>
               </div>
               <ul
                 className="flex flex-wrap w-full text-gray-300 md:text-gray-400
                text-sm font-Text2 md:justify-end"
               >
-                <span className="pr-4 z-10">Algorithms</span>
-                <span className="pr-4 z-10">Framer Motion</span>
+                <span className="pr-4 z-10">Next.js</span>
                 <span className="pr-4 z-10">Tailwind CSS</span>
                 <span className="pr-4 z-10">TypeScript</span>
+                <span className="pr-4 z-10">Vercel</span>
+                <span className="pr-4 z-10">Stripe</span>
               </ul>
               <div className="z-10 flex fle-row space-x-5 ">
                 <GithubIcon link="https://github.com" />
