@@ -71,7 +71,7 @@ export default function Home() {
   const meta = {
     title: 'Abdullah Esha - Software Engineer',
     description: `I've been working on Software development for 2 years straight. Get in touch with me to know more.`,
-    image: '/titofCercle.png',
+    image: '/abdullahCercle.png',
     type: 'website',
   }
   const isProd = process.env.NODE_ENV === 'production'
