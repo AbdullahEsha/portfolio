@@ -23,7 +23,7 @@ const IconsData = [
   { href: 'https://www.instagram.com/shahriar_isha', Icon: InstagramIcon },
 ]
 
-export default function Fotter(props: {
+export default function Footer(props: {
   githubUrl: string
   hideSocialsInDesktop: boolean
 }) {

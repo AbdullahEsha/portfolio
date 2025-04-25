@@ -1,10 +1,7 @@
 import Header from "../components/Header/Header";
-import Startup from "../components/Header/StartupLogo/Startup";
 import MyName from "../components/Home/MyName/MyName";
-import { useContext, useEffect, useState, useRef } from "react";
-import SocialMediaArround from "../components/Home/SocialMediaArround/SocialMediaArround";
+import { useContext, useEffect, useRef } from "react";
 import AboutMe from "../components/Home/AboutMe/AboutMe";
-import ThisCantBeReached from "../components/Home/ThisSiteCantBeReached/ThisCantBeReached";
 import WhereIHaveWorked from "../components/Home/WhereIHaveWorked/WhereIHaveWorked";
 import SomethingIveBuilt from "../components/Home/SomethingIveBuilt/SomethingIveBuilt";
 import GetInTouch from "../components/Home/GetInTouch/GetInTouch";
@@ -14,16 +11,55 @@ import Aos from "aos";
 import "aos/dist/aos.css";
 import Head from "next/head";
 import ScreenSizeDetector from "../components/CustomComponents/ScreenSizeDetector";
+import SocialMediaAround from "../components/Home/SocialMediaAround/SocialMediaAround";
+
 export default function Home() {
   // context Variable to clearInterval
   const context = useContext(AppContext);
   const aboutRef = useRef<HTMLDivElement>(null);
   const homeRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    // Set finishedLoading to true immediately
+    if (!context.sharedState.finishedLoading) {
+      context.sharedState.finishedLoading = true;
+      context.setSharedState({ ...context.sharedState });
+    }
+
+    // remove the interval Cookie timer setter
+    clearInterval(context.sharedState.userdata.timerCookieRef.current);
+
+    if (typeof window !== "undefined") {
+      // remove UserDataPuller project EventListeners
+      window.removeEventListener(
+        "resize",
+        context.sharedState.userdata.windowSizeTracker.current
+      );
+      window.removeEventListener(
+        "mousemove",
+        context.sharedState.userdata.mousePositionTracker.current,
+        false
+      );
+      // remove Typing project EventListeners
+      window.removeEventListener(
+        "resize",
+        context.sharedState.typing.eventInputLostFocus
+      );
+      document.removeEventListener(
+        "keydown",
+        context.sharedState.typing.keyboardEvent
+      );
+    }
+  }, [context, context.sharedState]);
+
+  useEffect(() => {
+    Aos.init({ duration: 2000, once: true });
+  }, []);
+
   const meta = {
     title: "Abdullah Esha - Software Engineer",
     description: `I've been working on Software development for 2 years straight. Get in touch with me to know more.`,
-    image: "/abdullahCercle.png",
+    image: "/abdullahCircle.png",
     type: "website",
   };
   const isProd = process.env.NODE_ENV === "production";
@@ -48,20 +84,17 @@ export default function Home() {
         <meta name="twitter:image" content={meta.image} />
       </Head>
       <div className="relative snap-mandatory min-h-screen bg-AAprimary w-full ">
-        <Header />
-        <MyName />
-        <SocialMediaArround />
-
+        <Header finishedLoading={true} sectionsRef={homeRef} />
+        <MyName finishedLoading={true} />
+        <SocialMediaAround finishedLoading={true} />
         <AboutMe ref={aboutRef} />
         <WhereIHaveWorked />
         <SomethingIveBuilt />
         <GetInTouch />
-
         <Footer
           githubUrl={"https://github.com/AbdullahEsha/portfolio"}
           hideSocialsInDesktop={true}
         />
-
         {!isProd && <ScreenSizeDetector />}
       </div>
     </>

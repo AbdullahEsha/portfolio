@@ -1,39 +1,39 @@
-import { useRef, useState } from "react";
-import { motion } from "../../../node_modules/framer-motion/dist/framer-motion";
-import ArrowIcon from "../../Icons/ArrowIcon";
-import Swop from "./Descriptions/Swop";
-import Bayshore from "./Descriptions/Bayshore";
-import Halalkabab from "./Descriptions/Halalkabab";
-import Nazaara from "./Descriptions/Nazaara";
-import Butterfly from "./Descriptions/Butterfly";
-import MakeYourQRCode from "./Descriptions/MakeYourQRCode";
-import TripLaw from "./Descriptions/TripLaw";
+import { useRef, useState } from 'react'
+import { motion } from '../../../node_modules/framer-motion/dist/framer-motion'
+import ArrowIcon from '../../Icons/ArrowIcon'
+import Swop from './Descriptions/Swop'
+import Bayshore from './Descriptions/Bayshore'
+import Halalkabab from './Descriptions/Halalkabab'
+import Nazaara from './Descriptions/Nazaara'
+import Butterfly from './Descriptions/Butterfly'
+import MakeYourQRCode from './Descriptions/MakeYourQRCode'
+import TripLaw from './Descriptions/TripLaw'
 
 export default function WhereIHaveWorked() {
-  const barRef = useRef<HTMLDivElement>(null);
+  const barRef = useRef<HTMLDivElement>(null)
   // ? INFORMATIONAL control the green position using px,
   // ? INFORMATIONAL the default value of barRef's class should be at the beginning translate-y-[0px]
   const GetDescription = () => {
     switch (DescriptionJob) {
-      case "Butterfly":
-        return <Butterfly />;
-      case "Swop":
-        return <Swop />;
-      case "Bayshore":
-        return <Bayshore />;
-      case "Halalkabab":
-        return <Halalkabab />;
-      case "Nazaara":
-        return <Nazaara />;
-      case "MakeYourQRCode":
-        return <MakeYourQRCode />;
-      case "TripLaw":
-        return <TripLaw />;
+      case 'Butterfly':
+        return <Butterfly />
+      case 'Swop':
+        return <Swop />
+      case 'Bayshore':
+        return <Bayshore />
+      case 'Halalkabab':
+        return <Halalkabab />
+      case 'Nazaara':
+        return <Nazaara />
+      case 'MakeYourQRCode':
+        return <MakeYourQRCode />
+      case 'TripLaw':
+        return <TripLaw />
       default:
-        return <Butterfly />;
+        return <Butterfly />
     }
-  };
-  const [DescriptionJob, setDescriptionJob] = useState("Butterfly");
+  }
+  const [DescriptionJob, setDescriptionJob] = useState('Butterfly')
   return (
     <div
       data-aos="fade-up"
@@ -43,10 +43,10 @@ export default function WhereIHaveWorked() {
       <section className="flex flex-row items-center">
         <div className="flex flex-row items-center">
           <ArrowIcon
-            className={"flex-none h-4 md:h-6 w-4 md:w-5 text-AAsecondary"}
+            className={'flex-none h-4 md:h-6 w-4 md:w-5 text-AAsecondary'}
           />
           <span className="text-AAsecondary font-sans text-sm  sm:text-xl">
-            {" "}
+            {' '}
             02.
           </span>
         </div>
@@ -67,24 +67,26 @@ export default function WhereIHaveWorked() {
         {GetDescription()}
       </section>
     </div>
-  );
+  )
 }
 
 const CompaniesBar = (props) => {
-  const [barPosition, setBarPosition] = useState<Number>(-8); // Green bar position by the default it's -20px
-  const [barAbovePosition, setBarAbovePosition] = useState<Number>(0);
-  const [companyNameBackgroundColorGreen, setCompanyNameBackgroundColorGreen] =
-    useState<boolean[]>([true, false, false, false, false, false, false]);
+  const [barPosition, setBarPosition] = useState<Number>(-8) // Green bar position by the default it's -20px
+  const [barAbovePosition, setBarAbovePosition] = useState<Number>(0)
+  const [
+    companyNameBackgroundColorGreen,
+    setCompanyNameBackgroundColorGreen,
+  ] = useState<boolean[]>([true, false, false, false, false, false, false])
   const CompanyButton = (props) => {
     return (
       <button
         onClick={() => {
-          setBarPosition(props.BarPosition);
-          setBarAbovePosition(props.BarAvobePosition);
-          props.setDescriptionJob(props.DescriptionJob);
+          setBarPosition(props.BarPosition)
+          setBarAbovePosition(props.BarAvobePosition)
+          props.setDescriptionJob(props.DescriptionJob)
           setCompanyNameBackgroundColorGreen(
-            props.CompanyNameBackgroundColorGreen
-          );
+            props.CompanyNameBackgroundColorGreen,
+          )
         }}
         className={`flex-none sm:text-sm text-xs text-center md:text-left  hover:text-AAsecondary
              hover:bg-ResumeButtonHover rounded  font-mono  
@@ -93,14 +95,14 @@ const CompaniesBar = (props) => {
                companyNameBackgroundColorGreen[
                  props.ButtonOrderOfcompanyNameBackgroundColorGreen
                ]
-                 ? "bg-ResumeButtonHover text-AAsecondary"
-                 : "text-gray-500"
+                 ? 'bg-ResumeButtonHover text-AAsecondary'
+                 : 'text-gray-500'
              }`}
       >
         {props.CompanyName}
       </button>
-    );
-  };
+    )
+  }
 
   return (
     <div
@@ -115,9 +117,11 @@ const CompaniesBar = (props) => {
         rounded md:order-1 order-2  "
       >
         {/* // ? animated left bar */}
-        <div
+        <motion.div
+          animate={{ y: barPosition }}
+          // ref={barRef}
           className={`absolute w-10 h-0.5 md:w-0.5 md:h-12 rounded bg-AAsecondary `}
-        ></div>
+        ></motion.div>
       </div>
       {/* // ? Companies name as buttons */}
       <div className="flex flex-col md:order-2 order-1 space-y-1 pl-8 md:pl-0 ">
@@ -242,9 +246,12 @@ const CompaniesBar = (props) => {
           />
         </div>
         <div className="block md:hidden h-0.5 rounded bg-gray-500">
-          <div className="w-[128px] h-0.5 rounded bg-AAsecondary"></div>
+          <motion.div
+            animate={{ x: barAbovePosition }}
+            className="w-[128px] h-0.5 rounded bg-AAsecondary"
+          ></motion.div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

@@ -1,5 +1,5 @@
 import "../styles/globals.css";
-import { Analytics } from '@vercel/analytics/react';
+import { Analytics } from "@vercel/analytics/react";
 import AppContext from "../components/AppContextFolder/AppContext";
 import { useRef, useState } from "react";
 
@@ -14,9 +14,9 @@ function MyApp({ Component, pageProps }) {
         scrolling: null,
         scrollSizeY: null,
       },
-      Scrolling:{
-        IntervalEvent:null
-      }
+      Scrolling: {
+        IntervalEvent: null,
+      },
     },
     userdata: {
       timerCookieRef: timerCookie,
@@ -27,8 +27,10 @@ function MyApp({ Component, pageProps }) {
       keyboardEvent: null,
       eventInputLostFocus: null,
     },
-    finishedLoading: false,
+    // Set finishedLoading to true by default
+    finishedLoading: true,
   });
+
   return (
     <AppContext.Provider value={{ sharedState, setSharedState }}>
       <Component {...pageProps} />
