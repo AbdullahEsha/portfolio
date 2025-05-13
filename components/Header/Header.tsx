@@ -98,9 +98,7 @@ const Header = (props: { finishedLoading: boolean; sectionsRef }) => {
       >
         {/* Logo A */}
         <Logo finishedLoading={props.finishedLoading} />
-
         {/* Hide icon Designed by me */}
-
         <IconMenu
           rotate={rotate}
           setRotate={setRotate}
