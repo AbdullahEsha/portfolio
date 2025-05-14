@@ -9,7 +9,8 @@ import { ArrowLeft, Calendar, User } from "lucide-react";
 import AppContext from "../../../components/AppContextFolder/AppContext";
 import Header from "../../../components/Header/Header";
 import Footer from "../../../components/Footer/Footer";
-import { blogPosts } from "../../../blogPosts.json";
+import blogPosts from "../../../blogPosts.json";
+import Image from "next/image";
 
 export default function BlogPost() {
   const router = useRouter();
@@ -17,7 +18,7 @@ export default function BlogPost() {
   const context = useContext(AppContext);
   const homeRef = useRef<HTMLDivElement>(null);
 
-  const post = blogPosts.find((post) => post.slug === slug);
+  const post = blogPosts.blogPosts.find((post) => post.slug === slug);
 
   useEffect(() => {
     // Set finishedLoading to true immediately
@@ -84,6 +85,18 @@ export default function BlogPost() {
         type: "website",
       };
 
+  const randomColor = () => {
+    const colors = [
+      "bg-red-500",
+      "bg-blue-500",
+      "bg-green-500",
+      "bg-yellow-500",
+      "bg-purple-500",
+      "bg-pink-500",
+    ];
+    return colors[Math.floor(Math.random() * colors.length)];
+  };
+
   return (
     <>
       <Head>
@@ -108,10 +121,9 @@ export default function BlogPost() {
       </Head>
       <div className="relative snap-mandatory min-h-screen bg-AAprimary w-full">
         <Header finishedLoading={true} sectionsRef={homeRef} />
-        {/* <SocialMediaArround finishedLoading={true} /> */}
 
         {post && (
-          <main className="px-8 md:px-24 lg:px-32 pt-28 pb-20 max-w-4xl mx-auto">
+          <main className="px-8 md:px-24 lg:px-32 pt-28 pb-20 max-w-7xl mx-auto">
             <div className="mb-8">
               <Link
                 href="/blog"
@@ -140,16 +152,27 @@ export default function BlogPost() {
                   <Calendar size={16} className="mr-2 text-AAsecondary" />
                   <span>{post.date}</span>
                 </div>
-                <div className="w-full mt-2">
-                  <span className="inline-block bg-[#233554] text-AAsecondary rounded-full px-3 py-1 text-sm font-medium">
-                    {post.category}
-                  </span>
-                </div>
               </div>
 
               <div className="h-64 md:h-80 bg-gray-700 rounded-lg mb-8 relative">
                 <div className="absolute inset-0 flex items-center justify-center text-gray-400">
-                  <span className="text-sm">Featured Image</span>
+                  <div className="absolute top-2 left-2 text-white text-xs px-2 py-1 rounded z-10">
+                    {post.tags.map((tag, index) => (
+                      <span
+                        key={index}
+                        className={`inline-block ${randomColor()} rounded-full px-3 py-1 text-sm font-medium mr-2 mb-2 shadow-md`}
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    className="object-cover w-full h-full rounded-lg"
+                    width={800}
+                    height={400}
+                  />
                 </div>
               </div>
             </div>
