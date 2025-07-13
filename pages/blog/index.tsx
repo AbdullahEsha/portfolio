@@ -1,17 +1,16 @@
 import { useContext, useEffect, useRef } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import parse from "html-react-parser";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import AppContext from "../../components/AppContextFolder/AppContext";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import { blogPosts } from "../../blogPosts.json";
+import blogData from "../../blogPosts.json";
 import Image from "next/image";
 import SocialMediaAround from "../../components/Home/SocialMediaAround/SocialMediaAround";
 
-export default function Blog() {
+const BlogPage = () => {
   const context = useContext(AppContext);
   const homeRef = useRef<HTMLDivElement>(null);
 
@@ -103,7 +102,7 @@ export default function Blog() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-            {blogPosts.map((post) => (
+            {blogData.blogPosts.map((post) => (
               <div
                 key={post.id}
                 data-aos="fade-up"
@@ -174,4 +173,6 @@ export default function Blog() {
       </div>
     </>
   );
-}
+};
+
+export default BlogPage;
