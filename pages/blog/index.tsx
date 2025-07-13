@@ -51,7 +51,7 @@ const BlogPage = () => {
   const meta = {
     title: "Abdullah Esha - Blog",
     description: `Read my thoughts on software development, tech trends, and more.`,
-    image: "/abdullahCircle.png",
+    image: "/abdullah-circle.png",
     type: "website",
   };
 

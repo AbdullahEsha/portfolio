@@ -2,10 +2,19 @@ import { useContext, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import Head from "next/head";
 import Link from "next/link";
-import parse from "html-react-parser";
+import parse, { domToReact } from "html-react-parser";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import { ArrowLeft, Calendar, User } from "lucide-react";
+import {
+  ArrowLeft,
+  Calendar,
+  User,
+  Clock,
+  Share2,
+  Twitter,
+  Linkedin,
+  Facebook,
+} from "lucide-react";
 import AppContext from "../../../components/AppContextFolder/AppContext";
 import Header from "../../../components/Header/Header";
 import Footer from "../../../components/Footer/Footer";
@@ -59,7 +68,6 @@ export default function BlogPost() {
     return (
       <div className="flex items-center justify-center min-h-screen bg-AAprimary">
         <div className="text-AAsecondary text-xl">
-          {/* animate loading */}
           <div className="animate-pulse">
             <div className="h-4 bg-gray-700 rounded w-48 mb-2"></div>
             <div className="h-4 bg-gray-700 rounded w-32 mb-2"></div>
@@ -81,20 +89,128 @@ export default function BlogPost() {
         title: "Blog Post | Abdullah Esha",
         description:
           "Read my thoughts on software development, tech trends, and more.",
-        image: "/abdullahCircle.png",
+        image: "/abdullah-circle.png",
         type: "website",
       };
 
-  const randomColor = () => {
-    const colors = [
-      "bg-red-500",
-      "bg-blue-500",
-      "bg-green-500",
-      "bg-yellow-500",
-      "bg-purple-500",
-      "bg-pink-500",
-    ];
-    return colors[Math.floor(Math.random() * colors.length)];
+  const tagColors = [
+    "bg-gradient-to-r from-blue-500 to-cyan-500",
+    "bg-gradient-to-r from-purple-500 to-pink-500",
+    "bg-gradient-to-r from-green-500 to-emerald-500",
+    "bg-gradient-to-r from-orange-500 to-red-500",
+    "bg-gradient-to-r from-indigo-500 to-purple-500",
+    "bg-gradient-to-r from-teal-500 to-blue-500",
+  ];
+
+  const getTagColor = (index) => {
+    return tagColors[index % tagColors.length];
+  };
+
+  // Enhanced content parser with custom styling
+  const parseContent = (content) => {
+    return parse(content, {
+      replace: (domNode) => {
+        if (domNode.type === "tag") {
+          const getTextContent = (node) => {
+            if (node.type === "text") return node.data;
+            if (node.children) {
+              return node.children
+                .map((child) => getTextContent(child))
+                .join("");
+            }
+            return "";
+          };
+
+          switch (domNode.name) {
+            case "h2":
+              return (
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 mt-8 relative group">
+                  <span className="relative z-10">
+                    {getTextContent(domNode)}
+                  </span>
+                  <div className="absolute -left-4 top-0 w-1 h-full bg-gradient-to-b from-AAsecondary to-blue-500 rounded-full opacity-80 group-hover:opacity-100 transition-opacity"></div>
+                </h2>
+              );
+            case "h3":
+              return (
+                <h3 className="text-xl md:text-2xl font-semibold text-gray-200 mb-3 mt-6">
+                  {getTextContent(domNode)}
+                </h3>
+              );
+            case "p":
+              return (
+                <p className="text-gray-300 leading-relaxed mb-4 text-base md:text-lg">
+                  {getTextContent(domNode)}
+                </p>
+              );
+            case "code":
+              if (
+                domNode.parent &&
+                typeof domNode.parent === "object" &&
+                "name" in domNode.parent &&
+                (domNode.parent as any).name === "pre"
+              ) {
+                return (
+                  <code className="block bg-gray-900 border border-gray-700 rounded-lg p-4 text-green-400 font-mono text-sm overflow-x-auto relative">
+                    <div className="absolute top-2 right-2 text-xs text-gray-500">
+                      CODE
+                    </div>
+                    {getTextContent(domNode)}
+                  </code>
+                );
+              }
+              return (
+                <code className="bg-gray-800 text-cyan-400 px-2 py-1 rounded font-mono text-sm border border-gray-700">
+                  {getTextContent(domNode)}
+                </code>
+              );
+            case "pre":
+              return (
+                <pre className="bg-gray-900 border border-gray-700 rounded-lg p-4 mb-6 overflow-x-auto relative shadow-lg">
+                  <div className="absolute top-2 right-2 text-xs text-gray-500 bg-gray-800 px-2 py-1 rounded">
+                    CODE
+                  </div>
+                  {getTextContent && parse(getTextContent(domNode))}
+                </pre>
+              );
+            case "ul":
+              return (
+                <ul className="list-none space-y-2 mb-6 ml-4">
+                  {domNode.children
+                    ?.filter(
+                      (child) => child.type === "tag" && child.name === "li"
+                    )
+                    .map((child, index) => (
+                      <li key={index} className="text-gray-300 relative pl-6">
+                        <span className="absolute left-0 top-2 w-2 h-2 bg-AAsecondary rounded-full shadow-sm shadow-AAsecondary/50"></span>
+                        {domToReact((child as any).children)}
+                      </li>
+                    ))}
+                </ul>
+              );
+            case "ol":
+              return (
+                <ol className="list-none space-y-2 mb-6 ml-4">
+                  {domNode.children
+                    ?.filter(
+                      (child) => child.type === "tag" && child.name === "li"
+                    )
+                    .map((child, index) => (
+                      <li key={index} className="text-gray-300 relative pl-8">
+                        <span className="absolute left-0 top-0 w-6 h-6 bg-gradient-to-r from-AAsecondary to-blue-500 rounded-full text-white text-xs flex items-center justify-center font-semibold shadow-sm shadow-AAsecondary/30">
+                          {index + 1}
+                        </span>
+                        {domToReact((child as any).children)}
+                      </li>
+                    ))}
+                </ol>
+              );
+            default:
+              return;
+          }
+        }
+      },
+    });
   };
 
   return (
@@ -123,90 +239,152 @@ export default function BlogPost() {
         <Header finishedLoading={true} sectionsRef={homeRef} />
 
         {post && (
-          <main className="px-8 md:px-24 lg:px-32 pt-28 pb-20 max-w-7xl mx-auto">
+          <main className="px-6 md:px-12 lg:px-24 pt-28 pb-20 max-w-5xl mx-auto">
+            {/* Back Navigation */}
             <div className="mb-8">
               <Link
                 href="/blog"
-                className="inline-flex items-center text-AAsecondary hover:text-AAsecondary/80 transition-colors mb-6"
+                className="inline-flex items-center text-AAsecondary hover:text-white transition-all duration-300 mb-6 group"
               >
-                <ArrowLeft size={16} className="mr-2" />
+                <ArrowLeft
+                  size={16}
+                  className="mr-2 group-hover:-translate-x-1 transition-transform"
+                />
                 Back to all posts
               </Link>
 
-              <h1
-                data-aos="fade-up"
-                className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6"
-              >
-                {post.title}
-              </h1>
+              {/* Article Header */}
+              <div className="mb-8">
+                <h1
+                  data-aos="fade-up"
+                  className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight"
+                >
+                  {post.title}
+                </h1>
 
-              <div
-                data-aos="fade-up"
-                className="flex flex-wrap items-center text-gray-400 mb-8"
-              >
-                <div className="flex items-center mr-6 mb-2">
-                  <User size={16} className="mr-2 text-AAsecondary" />
-                  <span>{post.author}</span>
+                {/* Meta Information */}
+                <div
+                  data-aos="fade-up"
+                  className="flex flex-wrap items-center text-gray-400 mb-8 space-x-6"
+                >
+                  <div className="flex items-center">
+                    <User size={16} className="mr-2 text-AAsecondary" />
+                    <span className="text-gray-300">{post.author}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Calendar size={16} className="mr-2 text-AAsecondary" />
+                    <span className="text-gray-300">{post.date}</span>
+                  </div>
+                  <div className="flex items-center">
+                    <Clock size={16} className="mr-2 text-AAsecondary" />
+                    <span className="text-gray-300">{post.readTime}</span>
+                  </div>
                 </div>
-                <div className="flex items-center mr-6 mb-2">
-                  <Calendar size={16} className="mr-2 text-AAsecondary" />
-                  <span>{post.date}</span>
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {post.tags.map((tag, index) => (
+                    <span
+                      key={index}
+                      className={`inline-block ${getTagColor(
+                        index
+                      )} rounded-full px-4 py-2 text-sm font-medium text-white shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105`}
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </div>
 
-              <div className="h-64 md:h-80 bg-gray-700 rounded-lg mb-8 relative">
-                <div className="absolute inset-0 flex items-center justify-center text-gray-400">
-                  <div className="absolute top-2 left-2 text-white text-xs px-2 py-1 rounded z-10">
-                    {post.tags.map((tag, index) => (
-                      <span
-                        key={index}
-                        className={`inline-block ${randomColor()} rounded-full px-3 py-1 text-sm font-medium mr-2 mb-2 shadow-md`}
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+              {/* Featured Image */}
+              <div className="relative mb-12 group">
+                <div className="h-64 md:h-80 lg:h-96 bg-gray-800 rounded-xl overflow-hidden shadow-2xl">
                   <Image
                     src={post.image}
                     alt={post.title}
-                    className="object-cover w-full h-full rounded-lg"
+                    className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
                     width={800}
                     height={400}
                   />
                 </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-AAprimary/20 to-transparent rounded-xl"></div>
               </div>
             </div>
 
-            <div
-              data-aos="fade-up"
-              className="text-gray-400 text-lg mb-8 line-clamp-3"
-            >
-              {parse(post.content)}
+            {/* Article Content */}
+            <article data-aos="fade-up" className="prose prose-lg max-w-none">
+              <div className="text-gray-300 leading-relaxed">
+                {parseContent(post.content)}
+              </div>
+            </article>
+
+            {/* Share Section */}
+            <div className="mt-16 pt-8 border-t border-gray-700">
+              <div className="flex items-center justify-between flex-wrap gap-4">
+                <div>
+                  <h3 className="text-white text-xl font-semibold mb-2 flex items-center">
+                    <Share2 size={20} className="mr-2 text-AAsecondary" />
+                    Share this post
+                  </h3>
+                  <p className="text-gray-400 text-sm">
+                    Found this helpful? Share it with your network!
+                  </p>
+                </div>
+                <div className="flex space-x-4">
+                  <a
+                    href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
+                      post.title
+                    )}&url=${encodeURIComponent(
+                      `https://abdullahesha.me/blog/${slug}`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-2 text-gray-400 hover:text-blue-400 transition-colors duration-300 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg"
+                  >
+                    <Twitter size={16} />
+                    <span>Twitter</span>
+                  </a>
+                  <a
+                    href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+                      `https://abdullahesha.me/blog/${slug}`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-2 text-gray-400 hover:text-blue-600 transition-colors duration-300 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg"
+                  >
+                    <Linkedin size={16} />
+                    <span>LinkedIn</span>
+                  </a>
+                  <a
+                    href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+                      `https://abdullahesha.me/blog/${slug}`
+                    )}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center space-x-2 text-gray-400 hover:text-blue-500 transition-colors duration-300 bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg"
+                  >
+                    <Facebook size={16} />
+                    <span>Facebook</span>
+                  </a>
+                </div>
+              </div>
             </div>
 
-            <div className="mt-12 pt-8 border-t border-[#233554]">
-              <h3 className="text-white text-xl font-semibold mb-4">
-                Share this post
-              </h3>
-              <div className="flex space-x-4">
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-AAsecondary transition-colors"
-                >
-                  Twitter
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-AAsecondary transition-colors"
-                >
-                  LinkedIn
-                </a>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-AAsecondary transition-colors"
-                >
-                  Facebook
-                </a>
+            {/* Author Card */}
+            <div className="mt-12 bg-gray-900/50 border border-gray-700 rounded-xl p-6 backdrop-blur-sm">
+              <div className="flex items-center space-x-4">
+                <div className="w-16 h-16 bg-gradient-to-r from-AAsecondary to-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg">
+                  {post.author.charAt(0)}
+                </div>
+                <div>
+                  <h4 className="text-white font-semibold text-lg">
+                    {post.author}
+                  </h4>
+                  <p className="text-gray-400 text-sm">
+                    Full Stack Developer passionate about creating amazing web
+                    experiences
+                  </p>
+                </div>
               </div>
             </div>
           </main>
