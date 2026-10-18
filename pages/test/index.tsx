@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import Head from "next/head";
 export default function Page() {
   const getText = () => {
     // ! FIXME : find mindlength & masLength of the result 
@@ -10,6 +11,9 @@ export default function Page() {
   console.log("Page Rendered...");
   return (
     <div className="h-screen bg-AAprimary flex items-center justify-center">
+      <Head>
+        <meta name="robots" content="noindex, nofollow" />
+      </Head>
       <button onClick={() => getText()} className="text-AAsecondary px-8 py-2 border-2 border-AAsecondary rounded">
         Test
       </button>

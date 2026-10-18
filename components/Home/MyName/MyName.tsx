@@ -10,7 +10,7 @@ export default function MyName(props: { finishedLoading: boolean }) {
       px-8 2xl:px-72 xl:px-56 lg:px-32  md:px-28 sm:px-8 py-32 sm:py-52  "
     >
       <motion.span
-        initial={{ y: 10, opacity: 0 }}
+        initial={props.finishedLoading ? false : { y: 10, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{
           opacity: {
@@ -27,7 +27,7 @@ export default function MyName(props: { finishedLoading: boolean }) {
         Hi, my name is
       </motion.span>
       <motion.h1
-        initial={{ y: 10, opacity: 0 }}
+        initial={props.finishedLoading ? false : { y: 10, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{
           opacity: {
@@ -44,7 +44,7 @@ export default function MyName(props: { finishedLoading: boolean }) {
         Abdullah Esha.
       </motion.h1>
       <motion.h2
-        initial={{ y: 10, opacity: 0 }}
+        initial={props.finishedLoading ? false : { y: 10, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{
           opacity: {
@@ -62,7 +62,7 @@ export default function MyName(props: { finishedLoading: boolean }) {
       </motion.h2>
 
       <motion.h3
-        initial={{ y: 10, opacity: 0 }}
+        initial={props.finishedLoading ? false : { y: 10, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{
           opacity: {
@@ -96,7 +96,7 @@ export default function MyName(props: { finishedLoading: boolean }) {
         interactions.
       </motion.h3>
       <motion.div
-        initial={{ y: 10, opacity: 0 }}
+        initial={props.finishedLoading ? false : { y: 10, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{
           opacity: {

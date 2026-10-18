@@ -9,9 +9,32 @@ import Footer from "../components/Footer/Footer";
 import AppContext from "../components/AppContextFolder/AppContext";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import Head from "next/head";
+import Seo from "../components/Seo/Seo";
+import { absoluteUrl, SITE_NAME, SITE_URL } from "../lib/seo";
 import ScreenSizeDetector from "../components/CustomComponents/ScreenSizeDetector";
 import SocialMediaAround from "../components/Home/SocialMediaAround/SocialMediaAround";
+
+const personJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: SITE_NAME,
+    url: SITE_URL,
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: SITE_NAME,
+    url: SITE_URL,
+    image: absoluteUrl("/abdullah-circle.png"),
+    jobTitle: "Software Engineer",
+    sameAs: [
+      "https://github.com/AbdullahEsha",
+      "https://www.linkedin.com/in/abdullahesha",
+      "https://www.instagram.com/shahriar_isha",
+    ],
+  },
+];
 
 export default function Home() {
   // context Variable to clearInterval
@@ -56,33 +79,16 @@ export default function Home() {
     Aos.init({ duration: 2000, once: true });
   }, []);
 
-  const meta = {
-    title: "Abdullah Esha - Software Engineer",
-    description: `I've been working on Software development for 2 years straight. Get in touch with me to know more.`,
-    image: "/abdullah-circle.png",
-    type: "website",
-  };
   const isProd = process.env.NODE_ENV === "production";
 
   return (
     <>
-      <Head>
-        <title>{meta.title}</title>
-        <meta name="robots" content="follow, index" />
-        <meta content={meta.description} name="description" />
-        <meta property="og:url" content={`https://abdullahesha.me`} />
-        <link rel="canonical" href={`https://abdullahesha.me`} />
-        <meta property="og:type" content={meta.type} />
-        <meta property="og:site_name" content="Abdullah Esha" />
-        <meta property="og:description" content={meta.description} />
-        <meta property="og:title" content={meta.title} />
-        <meta property="og:image" content={meta.image} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@shahria72632736" />
-        <meta name="twitter:title" content={meta.title} />
-        <meta name="twitter:description" content={meta.description} />
-        <meta name="twitter:image" content={meta.image} />
-      </Head>
+      <Seo
+        title="Abdullah Esha - Software Engineer"
+        description="Abdullah Esha is a full-stack software engineer building microservices, APIs, ERP/CRM systems and modern web apps with React, Next.js and Node.js. Get in touch to work together."
+        path="/"
+        jsonLd={personJsonLd}
+      />
       <div className="relative snap-mandatory min-h-screen bg-AAprimary w-full ">
         <Header finishedLoading={true} sectionsRef={homeRef} />
         <MyName finishedLoading={true} />

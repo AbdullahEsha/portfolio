@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef } from "react";
-import Head from "next/head";
+import type { GetServerSideProps } from "next";
 import Link from "next/link";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
@@ -9,8 +9,35 @@ import "aos/dist/aos.css";
 import blogData from "../../blogPosts.json";
 import Image from "next/image";
 import SocialMediaAround from "../../components/Home/SocialMediaAround/SocialMediaAround";
+import Seo from "../../components/Seo/Seo";
+import { absoluteUrl, excerpt, SITE_NAME, toIsoDate } from "../../lib/seo";
 
-const BlogPage = () => {
+type PostSummary = {
+  id: number;
+  title: string;
+  slug: string;
+  excerpt: string;
+  author: string;
+  authorImage: string;
+  date: string;
+  category: string;
+  image: string;
+  tags: string[];
+};
+
+type BlogPageProps = { posts: PostSummary[] };
+
+// Deterministic so the server HTML and client hydration produce identical markup.
+const tagColors = [
+  "bg-red-500",
+  "bg-blue-500",
+  "bg-green-500",
+  "bg-yellow-500",
+  "bg-purple-500",
+  "bg-pink-500",
+];
+
+const BlogPage = ({ posts }: BlogPageProps) => {
   const context = useContext(AppContext);
   const homeRef = useRef<HTMLDivElement>(null);
 
@@ -48,44 +75,29 @@ const BlogPage = () => {
     Aos.init({ duration: 2000, once: true });
   }, []);
 
-  const meta = {
-    title: "Abdullah Esha - Blog",
-    description: `Read my thoughts on software development, tech trends, and more.`,
-    image: "/abdullah-circle.png",
-    type: "website",
-  };
-
-  const randomColor = () => {
-    const colors = [
-      "bg-red-500",
-      "bg-blue-500",
-      "bg-green-500",
-      "bg-yellow-500",
-      "bg-purple-500",
-      "bg-pink-500",
-    ];
-    return colors[Math.floor(Math.random() * colors.length)];
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: `${SITE_NAME} - Blog`,
+    url: absoluteUrl("/blog"),
+    blogPost: posts.map((post) => ({
+      "@type": "BlogPosting",
+      headline: post.title,
+      url: absoluteUrl(`/blog/${post.slug}`),
+      image: absoluteUrl(post.image),
+      datePublished: toIsoDate(post.date),
+      author: { "@type": "Person", name: post.author },
+    })),
   };
 
   return (
     <>
-      <Head>
-        <title>{meta.title}</title>
-        <meta name="robots" content="follow, index" />
-        <meta content={meta.description} name="description" />
-        <meta property="og:url" content={`https://abdullahesha.me/blog`} />
-        <link rel="canonical" href={`https://abdullahesha.me/blog`} />
-        <meta property="og:type" content={meta.type} />
-        <meta property="og:site_name" content="Abdullah Esha" />
-        <meta property="og:description" content={meta.description} />
-        <meta property="og:title" content={meta.title} />
-        <meta property="og:image" content={meta.image} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@shahria72632736" />
-        <meta name="twitter:title" content={meta.title} />
-        <meta name="twitter:description" content={meta.description} />
-        <meta name="twitter:image" content={meta.image} />
-      </Head>
+      <Seo
+        title="Blog | Abdullah Esha - Software Engineer"
+        description="Articles by Abdullah Esha on software development, React, Next.js, Git, Docker, AWS, Laravel and server administration."
+        path="/blog"
+        jsonLd={jsonLd}
+      />
       <div className="relative snap-mandatory min-h-screen bg-AAprimary w-full">
         <Header finishedLoading={true} sectionsRef={homeRef} />
         <SocialMediaAround finishedLoading={true} />
@@ -102,7 +114,7 @@ const BlogPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
-            {blogData.blogPosts.map((post) => (
+            {posts.map((post) => (
               <div
                 key={post.id}
                 data-aos="fade-up"
@@ -113,10 +125,12 @@ const BlogPage = () => {
                     <div className="absolute inset-0 flex items-center justify-center text-gray-400">
                       <div className="absolute top-2 left-2 text-white text-xs px-2 py-1 rounded z-10">
                         {/* random color */}
-                        {post.tags.map((tag) => (
+                        {post.tags.map((tag, index) => (
                           <span
                             key={tag}
-                            className={`inline-block ${randomColor()} rounded-full px-3 py-1 text-sm font-medium mr-2 mb-2 shadow-md`}
+                            className={`inline-block ${
+                              tagColors[(post.id + index) % tagColors.length]
+                            } rounded-full px-3 py-1 text-sm font-medium mr-2 mb-2 shadow-md`}
                           >
                             {tag}
                           </span>
@@ -136,14 +150,18 @@ const BlogPage = () => {
                         {post.category}
                       </span>
                       <span className="mx-2 text-gray-500">•</span>
-                      <span className="text-gray-500 text-sm">{post.date}</span>
+                      <time
+                        dateTime={toIsoDate(post.date)}
+                        className="text-gray-500 text-sm"
+                      >
+                        {post.date}
+                      </time>
                     </div>
                     <h2 className="text-xl font-semibold text-white mb-2 hover:text-AAsecondary transition-colors">
                       {post.title}
                     </h2>
                     <div className="text-gray-400 text-sm mb-4 line-clamp-2">
-                      {post.content.replace(/<[^>]*>/g, "").substring(0, 150)}
-                      ...
+                      {post.excerpt}
                     </div>
                     <div className="flex items-center">
                       <div className="w-8 h-8 rounded-full bg-gray-700 mr-3">
@@ -173,6 +191,30 @@ const BlogPage = () => {
       </div>
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps<BlogPageProps> = async ({
+  res,
+}) => {
+  res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=3600, stale-while-revalidate=86400"
+  );
+
+  const posts = blogData.blogPosts.map(({ content, ...post }) => ({
+    id: post.id,
+    title: post.title,
+    slug: post.slug,
+    excerpt: excerpt(content, 150),
+    author: post.author,
+    authorImage: post.authorImage,
+    date: post.date,
+    category: post.category,
+    image: post.image,
+    tags: post.tags,
+  }));
+
+  return { props: { posts } };
 };
 
 export default BlogPage;

@@ -2,6 +2,7 @@ import "../styles/globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import AppContext from "../components/AppContextFolder/AppContext";
 import { useRef, useState } from "react";
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {
   const timerCookie = useRef(null);
@@ -33,6 +34,9 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <AppContext.Provider value={{ sharedState, setSharedState }}>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       <Component {...pageProps} />
       <Analytics />
     </AppContext.Provider>

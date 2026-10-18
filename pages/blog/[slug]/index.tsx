@@ -1,6 +1,5 @@
 import { useContext, useEffect, useRef } from "react";
-import { useRouter } from "next/router";
-import Head from "next/head";
+import type { GetServerSideProps } from "next";
 import Link from "next/link";
 import parse, { domToReact } from "html-react-parser";
 import Aos from "aos";
@@ -20,14 +19,22 @@ import Header from "../../../components/Header/Header";
 import Footer from "../../../components/Footer/Footer";
 import blogPosts from "../../../blogPosts.json";
 import Image from "next/image";
+import Seo from "../../../components/Seo/Seo";
+import {
+  absoluteUrl,
+  excerpt,
+  SITE_NAME,
+  toIsoDate,
+} from "../../../lib/seo";
 
-export default function BlogPost() {
-  const router = useRouter();
-  const { slug } = router.query;
+type Post = (typeof blogPosts.blogPosts)[number];
+
+type BlogPostProps = { post: Post };
+
+export default function BlogPost({ post }: BlogPostProps) {
+  const slug = post.slug;
   const context = useContext(AppContext);
   const homeRef = useRef<HTMLDivElement>(null);
-
-  const post = blogPosts.blogPosts.find((post) => post.slug === slug);
 
   useEffect(() => {
     // Set finishedLoading to true immediately
@@ -63,35 +70,43 @@ export default function BlogPost() {
     Aos.init({ duration: 2000, once: true });
   }, []);
 
-  // If the post is not found or the page is still loading, show a loading state
-  if (!post && slug) {
-    return (
-      <div className="flex items-center justify-center min-h-screen bg-AAprimary">
-        <div className="text-AAsecondary text-xl">
-          <div className="animate-pulse">
-            <div className="h-4 bg-gray-700 rounded w-48 mb-2"></div>
-            <div className="h-4 bg-gray-700 rounded w-32 mb-2"></div>
-            <div className="h-4 bg-gray-700 rounded w-64"></div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  const postUrl = absoluteUrl(`/blog/${slug}`);
+  const description = excerpt(post.content);
+  const publishedTime = toIsoDate(post.date);
 
-  const meta = post
-    ? {
-        title: `${post.title} | Abdullah Esha`,
-        description: post.content.replace(/<[^>]*>/g, "").substring(0, 150),
-        image: post.image,
-        type: "article",
-      }
-    : {
-        title: "Blog Post | Abdullah Esha",
-        description:
-          "Read my thoughts on software development, tech trends, and more.",
-        image: "/abdullah-circle.png",
-        type: "website",
-      };
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      headline: post.title,
+      description,
+      image: [absoluteUrl(post.image)],
+      datePublished: publishedTime,
+      dateModified: publishedTime,
+      author: {
+        "@type": "Person",
+        name: post.author,
+        url: absoluteUrl("/"),
+      },
+      publisher: {
+        "@type": "Person",
+        name: SITE_NAME,
+        url: absoluteUrl("/"),
+      },
+      mainEntityOfPage: { "@type": "WebPage", "@id": postUrl },
+      articleSection: post.category,
+      keywords: post.tags.join(", "),
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl("/") },
+        { "@type": "ListItem", position: 2, name: "Blog", item: absoluteUrl("/blog") },
+        { "@type": "ListItem", position: 3, name: post.title, item: postUrl },
+      ],
+    },
+  ];
 
   const tagColors = [
     "bg-gradient-to-r from-blue-500 to-cyan-500",
@@ -215,31 +230,20 @@ export default function BlogPost() {
 
   return (
     <>
-      <Head>
-        <title>{meta.title}</title>
-        <meta name="robots" content="follow, index" />
-        <meta content={meta.description} name="description" />
-        <meta
-          property="og:url"
-          content={`https://abdullahesha.me/blog/${slug}`}
-        />
-        <link rel="canonical" href={`https://abdullahesha.me/blog/${slug}`} />
-        <meta property="og:type" content={meta.type} />
-        <meta property="og:site_name" content="Abdullah Esha" />
-        <meta property="og:description" content={meta.description} />
-        <meta property="og:title" content={meta.title} />
-        <meta property="og:image" content={meta.image} />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@shahria72632736" />
-        <meta name="twitter:title" content={meta.title} />
-        <meta name="twitter:description" content={meta.description} />
-        <meta name="twitter:image" content={meta.image} />
-      </Head>
+      <Seo
+        title={`${post.title} | Abdullah Esha`}
+        description={description}
+        path={`/blog/${slug}`}
+        image={post.image}
+        type="article"
+        publishedTime={publishedTime}
+        tags={post.tags}
+        jsonLd={jsonLd}
+      />
       <div className="relative snap-mandatory min-h-screen bg-AAprimary w-full">
         <Header finishedLoading={true} sectionsRef={homeRef} />
 
-        {post && (
-          <main className="px-6 md:px-12 lg:px-24 pt-28 pb-20 max-w-5xl mx-auto">
+        <main className="px-6 md:px-12 lg:px-24 pt-28 pb-20 max-w-5xl mx-auto">
             {/* Back Navigation */}
             <div className="mb-8">
               <Link
@@ -273,7 +277,9 @@ export default function BlogPost() {
                   </div>
                   <div className="flex items-center">
                     <Calendar size={16} className="mr-2 text-AAsecondary" />
-                    <span className="text-gray-300">{post.date}</span>
+                    <time dateTime={publishedTime} className="text-gray-300">
+                      {post.date}
+                    </time>
                   </div>
                   <div className="flex items-center">
                     <Clock size={16} className="mr-2 text-AAsecondary" />
@@ -305,6 +311,7 @@ export default function BlogPost() {
                     className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
                     width={800}
                     height={400}
+                    priority
                   />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-AAprimary/20 to-transparent rounded-xl"></div>
@@ -335,7 +342,7 @@ export default function BlogPost() {
                     href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
                       post.title
                     )}&url=${encodeURIComponent(
-                      `https://abdullahesha.me/blog/${slug}`
+                      postUrl
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -346,7 +353,7 @@ export default function BlogPost() {
                   </a>
                   <a
                     href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
-                      `https://abdullahesha.me/blog/${slug}`
+                      postUrl
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -357,7 +364,7 @@ export default function BlogPost() {
                   </a>
                   <a
                     href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
-                      `https://abdullahesha.me/blog/${slug}`
+                      postUrl
                     )}`}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -388,7 +395,6 @@ export default function BlogPost() {
               </div>
             </div>
           </main>
-        )}
 
         <Footer
           githubUrl={"https://github.com/AbdullahEsha/portfolio"}
@@ -398,3 +404,21 @@ export default function BlogPost() {
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps<BlogPostProps> = async ({
+  params,
+  res,
+}) => {
+  const post = blogPosts.blogPosts.find((p) => p.slug === params?.slug);
+
+  if (!post) {
+    return { notFound: true };
+  }
+
+  res.setHeader(
+    "Cache-Control",
+    "public, s-maxage=3600, stale-while-revalidate=86400"
+  );
+
+  return { props: { post } };
+};

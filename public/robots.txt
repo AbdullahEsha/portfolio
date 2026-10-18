@@ -1,3 +1,6 @@
-# Allow all crawlers
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /test
+
+Sitemap: https://www.abdullahesha.me/sitemap.xml
